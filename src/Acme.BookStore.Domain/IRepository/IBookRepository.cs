@@ -8,7 +8,8 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Acme.BookStore.IRepository
 {
-    public interface IBookRepository:IBasicRepository<Book,Guid>, IRepository<Book, Guid>
+    public interface IBookRepository : IBasicRepository<Book, Guid>, IRepository<Book, Guid>
     {
+        Task<List<Book>> getListMoreThanPrice(float price);
     }
 }

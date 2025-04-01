@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
 
+using System.Threading.Tasks;
+using Volo.Abp.Application.Services;
 namespace Acme.BookStore.Books
 {
     //public interface IBookAppService :
@@ -13,6 +10,7 @@ namespace Acme.BookStore.Books
     public interface IBookAppService : IApplicationService
     {
         Task<BookDto> GetAsync(Guid id);
+        Task<List<BookDto>> GetListMoreThanPrice(float price);
 
     }
 }
