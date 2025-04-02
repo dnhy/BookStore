@@ -15,6 +15,7 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Acme.BookStore.Books;
+using Acme.BookStore.Orders;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
@@ -57,6 +58,9 @@ public class BookStoreDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     public DbSet<Book> Books { get; set; }
+
+    public DbSet<Order> Orders { get; set; }
+
     #endregion
 
     public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options)
@@ -95,6 +99,13 @@ public class BookStoreDbContext :
             b.ToTable(BookStoreConsts.DbTablePrefix + "Books", BookStoreConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable(BookStoreConsts.DbTablePrefix + "Orders", BookStoreConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.CustomerId).IsRequired().HasMaxLength(128);
         });
     }
 }

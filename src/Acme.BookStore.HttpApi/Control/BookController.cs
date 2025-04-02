@@ -26,12 +26,11 @@ namespace Acme.BookStore.Control
         [Route("{id}")]
         public async Task<BookDto> GetAsync(Guid id)
         {
-            Console.WriteLine("id:{0}", id);
             return await _entityAppService.GetAsync(id);
         }
 
         [HttpGet]
-        [Route("{price}")]
+        [Route("priceBT/{price}")]
         public async Task<List<BookDto>> getListMoreThanPrice(float price)
         {
             return await _entityAppService.GetListMoreThanPrice(price);
