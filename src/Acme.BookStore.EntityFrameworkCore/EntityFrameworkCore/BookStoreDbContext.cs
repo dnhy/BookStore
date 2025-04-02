@@ -61,6 +61,8 @@ public class BookStoreDbContext :
 
     public DbSet<Order> Orders { get; set; }
 
+    public DbSet<OrderDetatil> OrderDetails { get; set; }
+
     #endregion
 
     public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options)
@@ -84,7 +86,7 @@ public class BookStoreDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>

@@ -8,6 +8,7 @@ namespace Acme.BookStore.Orders
 {
     public enum PayStatusType
     {
+        unpayed,
         fail,
         sunccess
     }

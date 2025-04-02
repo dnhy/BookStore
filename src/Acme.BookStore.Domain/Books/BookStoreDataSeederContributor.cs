@@ -12,6 +12,7 @@ public class BookStoreDataSeederContributor
 {
     private readonly IRepository<Book, Guid> _bookRepository;
 
+
     public BookStoreDataSeederContributor(IRepository<Book, Guid> bookRepository)
     {
         _bookRepository = bookRepository;
