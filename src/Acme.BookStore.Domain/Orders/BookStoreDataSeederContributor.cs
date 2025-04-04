@@ -25,7 +25,7 @@ namespace Acme.BookStore
             {
                 await _orderRepository.InsertAsync(new Order
                 {
-                    CustomerId = Guid.NewGuid().ToString(),
+                    CustomerId = Guid.NewGuid(),
                     TotalPrice = 12.5f,
                     Quantity = 12,
                     OrderDate = DateTimeOffset.Now,
@@ -35,12 +35,13 @@ namespace Acme.BookStore
 );
             }
 
-            if (await _orderRepository2.GetCountAsync() <= 0)
+            if (await _orderRepository2.GetCountAsync() <=0)
             {
                 await _orderRepository2.InsertAsync(new OrderDetatil
                 {
-                    OrderId = "3a19088e-e11c-6eab-fb52-3fee8380b98b",
-                    BookId = "3a190843-37da-3b03-7c55-65f6d6cf387c"
+                    OrderId = Guid.Parse("3a190b50-5cfa-eb04-52ab-aef72b518d6a"),
+                    BookId = Guid.Parse("3a190b50-5c6e-f881-c721-31b73e282864"),
+                    BooknNum = 10,
                 }, autoSave: true
 );
             }

@@ -11,11 +11,12 @@ using Volo.Abp;
 
 namespace Acme.BookStore.Control
 {
+    [RemoteService(Name = "BookStore")]
     [ControllerName("Book")]
     [Route("api/BooksApi")]
     public class BookController : BookStoreController
     {
-        readonly IBookAppService _entityAppService;
+        private readonly IBookAppService _entityAppService;
 
         public BookController(IBookAppService input)
         {

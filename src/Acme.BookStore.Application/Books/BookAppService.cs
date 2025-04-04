@@ -14,6 +14,7 @@ namespace Acme.BookStore.Books
     //    public BookAppService(IRepository<Book, Guid> repository) : base(repository)
     //    { }
     //}
+
     [RemoteService(IsEnabled = false)]
     public class BookAppService : ApplicationService, IBookAppService
     {

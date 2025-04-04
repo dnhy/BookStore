@@ -8,6 +8,6 @@ namespace Acme.BookStore.Orders
 {
     public class RequestOrderInput
     {
-        public string OrderId { get; set; }
+        public string? OrderId { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Acme.BookStore.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Acme.BookStore.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250403060644_Created_Book_Entity3")]
+    partial class Created_Book_Entity3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,7 +211,8 @@ namespace Acme.BookStore.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.ToTable("OrderDetails");
                 });
@@ -2043,8 +2047,8 @@ namespace Acme.BookStore.Migrations
                         .IsRequired();
 
                     b.HasOne("Acme.BookStore.Orders.Order", "Order")
-                        .WithMany("OrderDetatils")
-                        .HasForeignKey("OrderId")
+                        .WithOne("OrderDetatil")
+                        .HasForeignKey("Acme.BookStore.Orders.OrderDetatil", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2206,7 +2210,8 @@ namespace Acme.BookStore.Migrations
 
             modelBuilder.Entity("Acme.BookStore.Orders.Order", b =>
                 {
-                    b.Navigation("OrderDetatils");
+                    b.Navigation("OrderDetatil")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

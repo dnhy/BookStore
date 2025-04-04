@@ -5,24 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Acme.BookStore.Books;
 using Acme.BookStore.Orders;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Volo.Abp;
 
 namespace Acme.BookStore.Control
 {
+    [RemoteService(Name = "BookStore")]
+    [ControllerName("Order")]
+    [Route("api/OrderApi")]
     public class OrderController
     {
-        readonly IOrderDetailService _orderDetailService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IOrderDetailService OrderDetailService)
+
+        public OrderController(IOrderService OrderService)
         {
-            _orderDetailService = OrderDetailService;
+            _orderService = OrderService;
+
         }
 
         [HttpGet]
-        [Route("all")]
-        public async Task<List<OrderDetailDto>> GetAsync(RequestOrderInput input)
+        [Route("order/all")]
+        public async Task<List<OrderDto>> GetListAsync()
         {
-            return await _orderDetailService.GetAllListAsync(input);
+            var res = await _orderService.GetListAsync();
+
+            return res;
         }
     }
 }

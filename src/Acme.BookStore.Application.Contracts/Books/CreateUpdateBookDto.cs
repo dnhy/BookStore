@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 
 namespace Acme.BookStore.Books
 {
-    public class CreateUpdateBookDto
+    public class CreateUpdateBookDto : ExtensibleEntityDto<Guid>
     {
         [Required]
         [StringLength(128)]

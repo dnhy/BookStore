@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Volo.Abp.Domain.Entities.Auditing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 
 namespace Acme.BookStore.Orders
 {
-    public class Order : FullAuditedAggregateRoot<Guid>
+    public class OrderDto : ExtensibleEntityDto<Guid>
     {
-
         public Guid CustomerId { get; set; }
         public float TotalPrice { get; set; }
         public int Quantity { get; set; }
@@ -20,7 +22,9 @@ namespace Acme.BookStore.Orders
         public string? ConsigneeName { get; set; }
         [MaxLength(50)]
         public string? ConsigneeTel { get; set; }
+        public List<OrderDetailDto> OrderDetatils { get; set; }
 
-        public ICollection<OrderDetatil> OrderDetatils { get; set; }
+        public float TotalCount { get; set; }
+
     }
 }
