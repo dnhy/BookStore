@@ -22,6 +22,7 @@ namespace Acme.BookStore.Orders
         public string? ConsigneeName { get; set; }
         [MaxLength(50)]
         public string? ConsigneeTel { get; set; }
+
         public List<OrderDetailDto> OrderDetatils { get; set; }
 
         public float TotalCount { get; set; }

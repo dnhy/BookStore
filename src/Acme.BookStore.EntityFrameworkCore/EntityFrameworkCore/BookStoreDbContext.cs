@@ -107,6 +107,10 @@ public class BookStoreDbContext :
         {
             b.ToTable(BookStoreConsts.DbTablePrefix + "Orders", BookStoreConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
+            b.HasMany(x => x.OrderDetatils).WithOne(x => x.Order)
+            .HasForeignKey(x => x.OrderId)
+            .IsRequired();
+
             b.Property(x => x.CustomerId).IsRequired().HasMaxLength(128);
         });
     }

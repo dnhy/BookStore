@@ -14,6 +14,9 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Studio;
+using Volo.Abp.Data;
+using Acme.BookStore.Orders;
+using Microsoft.Extensions.Options;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
@@ -44,8 +47,8 @@ public class BookStoreEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<BookStoreDbContext>(options =>
         {
-                /* Remove "includeAllEntities: true" to create
-                 * default repositories only for aggregate roots */
+            /* Remove "includeAllEntities: true" to create
+             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
         });
 
@@ -60,8 +63,6 @@ public class BookStoreEntityFrameworkCoreModule : AbpModule
              * See also BookStoreDbContextFactory for EF Core tooling. */
 
             options.UseNpgsql();
-
         });
-        
     }
 }

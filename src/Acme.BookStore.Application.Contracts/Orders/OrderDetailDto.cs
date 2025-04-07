@@ -10,7 +10,7 @@ namespace Acme.BookStore.Orders
     {
         public Guid OrderId { get; set; }
 
-        //public OrderDto Order { get; set; }
+        public OrderDto Order { get; set; }
 
         public Guid BookId { get; set; }
 

@@ -15,7 +15,7 @@ namespace Acme.BookStore.Orders
 
         //循环引用
         //[JsonIgnore]
-        //public Order Order { get; set; }
+        public Order Order { get; set; }
 
         public Guid BookId { get; set; }
 
